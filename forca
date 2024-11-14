@@ -1,0 +1,36 @@
+palavra = "Uzbequistao"
+letra_jogador = []
+chances = 6
+ganhou = False
+
+while chances > 0 and not ganhou:
+    for letra in palavra:
+        if letra.lower() in letra_jogador:
+            print(letra, end=" ")
+        else:
+            print("_", end=" ")
+    print()
+    print("Você tem", chances, "chances")
+    print("letras jogadas: ", letra_jogador)
+
+    tentativa = input("Escolha uma letra: ")
+    letra_jogador.append(tentativa.lower())
+    if tentativa in letra_jogador:
+        print("Você já escolheu essa letra. Tente outra.")
+        continue
+
+    if tentativa.lower() not in palavra.lower():
+        chances-=1
+
+    ganhou = True
+    for letra in palavra:
+        if letra.lower() not in letra_jogador:
+            ganhou = False
+
+    if chances == 0 or ganhou:
+        break
+
+if ganhou:
+        print("Parabéns, você ganhou. A palavra é:", palavra)
+else:
+        print("Você perdeu. A palavra era:", palavra)
